@@ -12,3 +12,28 @@ services:
       - "5432:5432"
     volumes:
       - ./data:/var/lib/postgresql/data
+    networks:
+      - e-network
+  
+  django:
+        container_name: django_clientes
+        restart: unless-stopped
+        environment:
+          DJANGO_SETTINGS_MODULE: 'core.settings'
+        build: 
+          context: .
+          dockerfile: Dockerfile
+    
+        command:  bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+        volumes:
+          - .:/code
+        ports:
+          - "8000:8000"
+        depends_on:
+          - db
+        networks:
+          - e-network
+
+networks:
+  e-network:
+    driver: bridge
