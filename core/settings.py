@@ -85,7 +85,7 @@ DATABASES = {
         'NAME': os.getenv('DB_NAME', 'teste_lccv'),
         'USER': os.getenv('DB_USER', 'admin'),
         'PASSWORD': os.getenv('DB_PASSWORD', '123454321'),
-        'HOST': os.getenv('DB_HOST', 'localhost'),
+        'HOST': os.getenv('DB_HOST', 'db'),
         'PORT': os.getenv('DB_PORT', '5432'),
     }
 }
